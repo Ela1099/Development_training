@@ -11,7 +11,7 @@ function progress(e) {
     case dec:
       count.value--;
       break;
-    case mult:
+    case mult :
       count.value=count.value*10;
       break;
     case del:
