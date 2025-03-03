@@ -4,7 +4,7 @@ import {ref} from "vue"
 
 const count=ref(1)
 
-function progress(e){
+function progress(e ){
 
   switch (e.target){
    case inc:
