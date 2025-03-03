@@ -6,7 +6,7 @@ const count=ref(1)
 
 function progress(e){
 
-  switch (e.target ){
+  switch (e.target  ){
    case inc:
       count.value++;
       break;
