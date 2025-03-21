@@ -1,7 +1,7 @@
 <script setup>
 import { defineProps, computed } from 'vue';
 
-const props = defineProps({
+defineProps({
   randomQuote: {
     type: Object,
   }
@@ -11,9 +11,9 @@ const ifRandomQuoteExist = computed(() => (Object.keys(props.randomQuote)).lengt
 </script>
 
 <template>
-  <div v-if="!ifRandomQuoteExist" class="quote">
-    <p class="quote__name"> {{ props.randomQuote.quoteName }}</p>
-    <span class="quote__author">{{ props.randomQuote.authorName }}</span>
+ <div v-if="randomQuote" class="quote">
+        <p class="quote__name"> {{ randomQuote.quoteName }}</p>
+    <span class="quote__author">{{ randomQuote.authorName }}</span>
   </div>
 </template>
 
