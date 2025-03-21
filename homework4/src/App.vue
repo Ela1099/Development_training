@@ -4,7 +4,7 @@ import QuoteDisplay from './components/QuoteGenerator/QuoteDisplay.vue';
 import Quotelist from './components/QuoteGenerator/QuoteList.vue';
 import { ref} from 'vue';
 
-const randomQuote = ref({})
+const randomQuote = ref(null)
 const quotes = ref([])
 
 
