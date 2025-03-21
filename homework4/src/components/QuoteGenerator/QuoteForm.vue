@@ -12,17 +12,14 @@ const isFormValid = computed(() => quoteName.value !== '' && authorName.value !=
 
 
 
-function addQuote() {
+function addQuote(e) {
+    e.preventDefault()
     const quote = {
         quoteName: quoteName.value,
         authorName: authorName.value,
-        id:id.value++
+        id: id.value++
     };
     emit('newQuote', quote)
-
-}
-
-const clean = () => {
     quoteName.value = '';
     authorName.value = ''
 }
@@ -33,8 +30,8 @@ const clean = () => {
         <h2 class="form-quote__header">New quote</h2>
         <input type="text" v-model="quoteName" class="form-quote__input quote" :placeholder="inputValue">
         <input type="text" v-model="authorName" class="form-quote__input author" :placeholder="inputValue">
-        <button type="button" class="form-quote__button" :disabled="!isFormValid" @click="addQuote">add</button>
-        <button type="button" class="form-quote__button" @click="clean">clear inputs</button>
+         <button type="submit" class="form-quote__button" :disabled="!isFormValid" @click="addQuote">add</button>
+      
     </form>
 </template>
 
