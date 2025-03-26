@@ -14,7 +14,7 @@ const props = defineProps({
 })
 
 watch(() => props.gameStatus, (gameStatusNewValue) => {
-    if (gameStatusNewValue == `победа ${props.winner}`) {
+    if (gameStatusNewValue == "завершена") {
         color.value = 'green';
     }
     else if (gameStatusNewValue == 'ничья') {

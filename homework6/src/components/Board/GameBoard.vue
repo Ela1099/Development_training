@@ -26,7 +26,9 @@ function clickUp(index) {
 }
 
 const disabled = computed(() => {
-    return props.gameStatus == 'игра идет' || props.gameStatus == 'не начата';
+   
+    return props.gameStatus === 'игра идет' ;
+  
 })
 
 </script>

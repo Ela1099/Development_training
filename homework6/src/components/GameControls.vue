@@ -2,7 +2,7 @@
 
 import { defineEmits, ref, watch } from 'vue';
 
-const curPlayer = ref('')
+const currentPlayer=ref('')
 
 const props = defineProps({
     modelValue: {
@@ -19,7 +19,7 @@ function rebut() {
 }
 
 watch(() => props.modelValue, (newValue) => {
-    curPlayer.value = newValue
+    currentPlayer.value = newValue
 }
 )
 
@@ -36,7 +36,7 @@ function update() {
         <input class="conroller__input" v-model="firstPlayer" @input="update" placeholder="введите х или о на русском">
 
         <p class="controler__output">
-            Ходит: игрок {{ curPlayer }}
+            Ходит: игрок {{ currentPlayer }}
         </p>
 
         <button class="controler__button" @click="rebut">Начать заново</button>

@@ -2,7 +2,7 @@
 import GameBoard from './components/Board/GameBoard.vue';
 import GameControls from './components/GameControls.vue';
 import GameStatus from './components/GameStatus.vue';
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 
 
 const winConditions = [
@@ -25,20 +25,16 @@ const curPlayer = ref(null)
 
 
 
-
 function chuseCellValue(index) {
-  gameStatus.value = 'игра идет';
   if (cells.value[index] == null) {
     cells.value[index] = curPlayer.value
-    curPlayer.value = curPlayer.value === 'х' ? 'о' : 'х';
+    checkForWinOrDraw()
+    if (winner.value!=='не определен')
+  return
   }
-  checkForWinOrDraw()
+  curPlayer.value = curPlayer.value === 'х' ? 'о' : 'х'
+ }
 
-
-
-
-
-}
 function rebutGame() {
   cells.value = Array(9).fill(null)
   curPlayer.value = null
@@ -56,25 +52,36 @@ function checkForWinOrDraw() {
   for (let i = 0; i < winConditions.length; i++) {
     const [a, b, c] = winConditions[i];
     if (cells.value[a] && cells.value[a] === cells.value[b] && cells.value[a] === cells.value[c]) {
+     
       roundWon = true;
-      winningPlayer = curPlayer.value === 'х' ? 'о' : 'х';
-
-      break;
+      winningPlayer = cells.value[a];
+       gameStatus.value = 'завершена'
+       break;
     }
   }
+  
   if (roundWon) {
     winner.value = winningPlayer;
-    gameStatus.value = `победа ${winner.value}`;
     return;
   }
   const roundDraw = !cells.value.includes(null);
   if (roundDraw) {
-    gameStatus.value = 'ничья';
     winner.value = 'дружба'
+    gameStatus.value = 'ничья';
     return;
   }
+ 
 
+  
 }
+watch(curPlayer,(newPlayerValue) => {
+  
+  if (newPlayerValue === 'х' || newPlayerValue === 'о') {
+    gameStatus.value = 'игра идет';
+  } else {
+    gameStatus.value = 'не начата';
+  }
+});
 
 </script>
 
@@ -86,6 +93,7 @@ function checkForWinOrDraw() {
       <GameStatus :gameStatus="gameStatus" :winner="winner" />
       <GameBoard :gameStatus="gameStatus" :cells="cells" @clickMain="chuseCellValue" />
       <GameControls v-model="curPlayer" @cleanGame="rebutGame" />
+     
     </div>
   </main>
 
