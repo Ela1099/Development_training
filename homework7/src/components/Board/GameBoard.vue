@@ -23,7 +23,11 @@ function clickUp(index:number) {
 }
 
 const disabled = computed(() => {
+<<<<<<< HEAD
    
+=======
+ 
+>>>>>>> 802848313e46e40852e01242fb83eaeaeafa6351
     return props.gameStatus === 'игра идет' ;
  
 })
