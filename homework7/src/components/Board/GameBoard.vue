@@ -23,7 +23,7 @@ function clickUp(index:number) {
 }
 
 const disabled = computed(() => {
-    console.log(disabled)
+ 
     return props.gameStatus === 'игра идет' ;
  
 })
